@@ -30,14 +30,20 @@ def get_august_data():
     """
     Get income data from the user
     """
-    print("Please enter your last income")
-    print("Data should be 3 numbers, separated by commas.")
-    print("Example: 80, 90, 100\n")
+    while True:
+        print("Please enter your last income")
+        print("Data should be 3 numbers, separated by commas.")
+        print("Example: 80, 90, 100\n")
 
-    data_str = input("Enter your income here: ")
+        data_str = input("Enter your income here: ")
 
-    august_data = data_str.split(",")
-    validate_data(august_data)
+        august_data = data_str.split(",")
+        
+        if validate_data(august_data):
+            print("Data is valid!")
+            break
+    
+    return august_data
 
     #print(f"Income you have provided is {data_str}")
 
@@ -56,8 +62,11 @@ def validate_data(values):
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
+        return False
+
+    return True
 
 
 
 
-get_august_data()
+august_data = get_august_data()
