@@ -34,7 +34,29 @@ def get_august_data():
     print("Data should be 3 numbers, separated by commas.")
     print("Example: 80, 90, 100\n")
 
-    data_str = input ("Enter your income here: ")
-    print(f"Income you have provided is {data_str}")
+    data_str = input("Enter your income here: ")
+
+    august_data = data_str.split(",")
+    validate_data(august_data)
+
+    #print(f"Income you have provided is {data_str}")
+
+
+def validate_data(values):
+    """
+    Inside the try, converts all string values into integers.
+    Raises ValueError if strings cannot be converted into int,
+    or if there aren't exactly 3 values.
+    """
+    try:
+        if len(values) !=3:
+            raise ValueError(
+                f"exactly 3 values required, you provided {len(values)}"
+            )
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
+
+
+
 
 get_august_data()
