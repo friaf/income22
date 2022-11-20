@@ -1,5 +1,4 @@
-from datetime import datetime
-from pprint import pprint
+from datetime import datetime, timedelta
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -16,8 +15,8 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("income_22")
 
 
-income_august_22 = SHEET.worksheet("income_august_22")
-income_september_22 = SHEET.worksheet("income_september_22")
+income_august_23 = SHEET.worksheet("income_august_23")
+income_september_23 = SHEET.worksheet("income_september_23")
 income_october_22 = SHEET.worksheet("income_october_22")
 income_november_22 = SHEET.worksheet("income_november_22")
 income_december_22 = SHEET.worksheet("income_december_22")
@@ -78,9 +77,9 @@ def update_income_worksheet(data):
     print("Updating income worksheet...\n")
     date_now = datetime.now().strftime('%B')
     if date_now == "August":
-        income_august_22.append_row(data)
+        income_august_23.append_row(data)
     elif date_now == "September":
-        income_september_22.append_row(data)
+        income_september_23.append_row(data)
     elif date_now == "October":
         income_october_22.append_row(data)
     elif date_now == "November":
@@ -99,7 +98,7 @@ def update_income_worksheet(data):
         income_may_23.append_row(data)
     elif date_now == "June":
         income_june_23.append_row(data)
-    elif date_now == "July":
+    elif date_now == "July": 
         income_july_23.append_row(data)
     print("Income is updated successfully.\n")
    
@@ -118,6 +117,87 @@ def convert_str(data):
     return integer_num
 
 
+def total_by_column(data):
+    """
+    Sums up collumns of different incomes and updates
+    worksheet with new data on the first day of the next month.
+    """
+    integer_num = convert_str(data)
+    month_now = datetime.now().strftime('%B %d')
+    # November month is done with datetime month without date so that 
+    # it would be easier to run program as i dont know when my work is
+    # going to be checked.
+    month_only = datetime.now().strftime('%B')
+    total = [sum(x) for x in zip(*integer_num)]
+    if month_only == "November":
+        income_october_22.append_row(total)
+        print("Total for each income type is calculated and updated")
+    elif month_now == "December 1":
+        income_november_22.append_row(total)
+        print("Total for each income type is calculated and updated")
+    elif month_now == "January 1":
+        income_december_22.append_row(total)
+        print("Total for each income type is calculated and updated")
+    elif month_now == "Fabruary 1":
+        income_january_23.append_row(total)
+        print("Total for each income type is calculated and updated")
+    elif month_now == "March 1":
+        income_fabruary_23.append_row(total)
+        print("Total for each income type is calculated and updated")
+    elif month_now == "April 1":
+        income_march_23.append_row(total)
+        print("Total for each income type is calculated and updated")
+    elif month_now == "May 1":
+        income_april_23.append_row(total)
+        print("Total for each income type is calculated and updated to")
+    elif month_now == "June 1":
+        income_may_23.append_row(total)
+        print("Total for each income type is calculated and updated")
+    elif month_now == "July 1":
+        income_june_23.append_row(total)
+        print("Total for each income type is calculated and updated")
+    elif month_now == "August 1":
+        income_july_23.append_row(total)
+        print("Total for each income type is calculated and updated")
+    elif month_now == "September 1":
+        income_august_23.append_row(total)
+        print("Total for income types is calculated and updated in worksheet")
+    elif month_now == "October 1":
+        income_september_23.append_row(total)
+        print("Total for each income type is calculated and updated")
+    return total
+
+
+def monthly_total():
+    """
+    Extract from the sheet row with total income
+    for all income types. Change it from string to
+    int to calculate total monthly income.
+    """
+    t_income = income_october_22.get_all_values()
+    m_income = t_income[-1]
+    for i in range(0, len(m_income)):
+        m_income[i] = int(m_income[i])
+    
+    m_total = sum(m_income)
+    return m_total
+
+def update_total_permonth():
+    """
+    text
+    """
+    m_total = monthly_total()
+    last_month = (datetime.now() - timedelta(days=32)).strftime("%B")
+    list = []
+    list.append(last_month)
+    list.append(m_total)
+    total_permonth = SHEET.worksheet("total_permonth")
+    total_permonth.append_row(list)
+    
+    print(list)
+
+
+
 def main():
     """
     Run all program functions.
@@ -126,7 +206,13 @@ def main():
     new_data = [int(num) for num in data]
     update_income_worksheet(new_data)
     convert_str(data)
-   
-     
-print("Welcome to income analyzing program\n")
+    total_by_column(data)
+    monthly_total()
+    update_total_permonth()
+
+
+print("Welcome to income calculator program!\n")
+print("Here you can keep track on your daily income")
+print("Count monthly total and for each income type")
+print("Update worksheets with new data. \n")
 main()
