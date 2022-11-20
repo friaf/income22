@@ -184,7 +184,10 @@ def monthly_total():
 
 def update_total_permonth():
     """
-    text
+    Making new list to insert month and total for this month.
+    We are counting total only for previouse month, so function 
+    finds name of previouse month and inserts this data to 
+    total worksheet.
     """
     m_total = monthly_total()
     last_month = (datetime.now() - timedelta(days=32)).strftime("%B")
@@ -193,9 +196,6 @@ def update_total_permonth():
     list.append(m_total)
     total_permonth = SHEET.worksheet("total_permonth")
     total_permonth.append_row(list)
-    
-    print(list)
-
 
 
 def main():
