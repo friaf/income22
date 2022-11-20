@@ -164,7 +164,7 @@ def total_by_column(data):
         print("Total for income types is calculated and updated in worksheet")
     elif month_now == "October 1":
         income_september_23.append_row(total)
-        print("Total for each income type is calculated and updated")
+         print("Total for income types is calculated and updated in worksheet")
     return total
 
 
@@ -191,12 +191,20 @@ def update_total_permonth():
     """
     m_total = monthly_total()
     last_month = (datetime.now() - timedelta(days=32)).strftime("%B")
+    total_permonth = SHEET.worksheet("total_permonth")
     list = []
     list.append(last_month)
     list.append(m_total)
-    total_permonth = SHEET.worksheet("total_permonth")
-    total_permonth.append_row(list)
-
+    
+    input_dt = datetime.today().date()
+    day_num = input_dt.strftime("%d")
+    res = input_dt - timedelta(days=int(day_num) - 1)
+    month_now = datetime.now().strftime('%B %d')
+    if month_now == res:
+        total_permonth.append_row(list)
+    else:
+        print("Goodbye!")
+    
 
 def main():
     """
