@@ -151,7 +151,7 @@ def total_by_column(data):
         income_august_23.append_row(total)
     elif month_now == "October 1":
         income_september_23.append_row(total)
-    print(f"Each income type for {last_month#} is calculated")
+    print(f"Each income type for {last_month} is calculated")
     print("and updated successfully\n")
     return total
 
