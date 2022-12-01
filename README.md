@@ -4,9 +4,8 @@
 
 
 ### Description
-This program is inspired by my mather, as she loves counting daily, monthly and yearly incomes. 
-She has a lot of differenet incomes that come during the month on random days so income calculator is done for her or people like her to ease life.
-Program is updating data in work sheets, calculating monthly income per type and monthly total.
+Income calculator is dedicated to my mather, person that loves counting numbers especially if its income numbers :-)
+Calculator is useful for anyone who is keeping track of personal income or family income. Program updates income data, calculates monthly total and total for each income type based on input data.
 
 
 ![screens](/images/responsive.png)
@@ -16,87 +15,101 @@ Program is updating data in work sheets, calculating monthly income per type and
 ### Existing features
 
 -	Welcome message
-     - Header shows to user from the first sign that this is a game Rock, Paper, Scissors.
+     - Explains what functions program does with the input data.
 
 ![screens](/images/welcome_msg.png)
 
--	Message section
-     - Has a welcoming message explaining what user/player should do to start the game. During the game message in the field changes depending on game results. Messages are: It’s a win! (if player wins), It’s a draw! (if player and computer chose the same element) or Computer wins!  (if user losses). Every message is supported with sound that represents win, lose or draw.
+-	Input section
+     - In this section program requires input of daily income from the user. Example of input data is provided for the user. 
 
 ![screens](/images/request_for_data.png)
 
--	The game result
-     - It’s a score area with 0 for computer and for player. When player wins score changes to +1 if computer wins the same, if it’s a draw no one gets a point, and the score stays the same.
+-	
+     - User inputs data that is requested and program validates it, so it passes requirements.
+     - If data is incorrect program comes back to Input section to try again, ot loops until user inputs valid data. 
 
 ![screens](/images/input_of_data_and_validation.png)
+![screens](/images/invaliddata.png)
 
--	The game options
-     - User and computer have 3 options to choose from, it is button with a hand that shows rock, paper or scissors.  When user chose button to play, computer starts thinking his option for couple of seconds, during these seconds computer’s buttons blink one after another. When the choice is done for both parties, buttons are highlighted with yellow color.
+-	Updating daily income to work sheet
+     - If user inputs valid data, this data is updated and stored in the work sheet
+     - Program chooses work sheet to update depending on the current month.
+     Example: if its November program updates work sheet for November, etc.
 
 ![screens](/images/updating_sheet.png)
 
--	Rules button and popup.
-     - When user presses on the button game page is becoming black and a popup windows pops in the middle of the screen with the rules of the game. After closing this window, user returns to game.
+-	Calculating monthly total by type section.
+     - This function runs by the program monthly, calculating total for each type of income for previouse month on the 1 day of current month and updating work sheet with calculated sum.
 
 ![screens](/images/updating_and_calculating_types.png)
 
--	Rules button and popup.
-     - When user presses on the button game page is becoming black and a popup windows pops in the middle of the screen with the rules of the game. After closing this window, user returns to game.
+-	Calculating monthly total
+     - This function runs by the program monthly, calculating monthly total for the previouse month on the first day of current month and updates new work sheet for the total_permonth.
 
 ![screens](/images/updating_and_calculating_monthly_income.png)
 
 ### Features to implement
-- In the future game should have more of casino and gambling features like a money bag        with amount on it for computer and user where coins fall after each win and add a score scheme where if its a win 2 times in a row, double amount is added to money bag.
+- In future i will add calculation of yearly total and what month and type of income was most profitable.
 
 ## Testing
 
-- I tested playing this game in different browsers: Chrome, Firefox.
-- I confirmed that the game results are always correct
-- I confirmed that header, message area, score area, options and rules button work correctly, easy to understand and navigate.
-- I confirmed that colors and fonts chosen are easy to read and accessible by running it through lighthouse in devtools.
+I have manually tested this project by doing the following
+- Passed the code through a PEP8 linter and confirmed there are no problems
+- Given invalid inputs: like strings and more numbers to see if it validtes correctly. No problems where found
+- Checked if google sheets are updated correctly and if it updates on correct days.No problems where found
+- Tested in my local terminal and the Code Institute Heroku terminal
 
-![screens](/assets/images/testing.png)
-
-- I confirmed that this project is responsive, looks good and functions on all standard screen sizes using the devtools device toolbar.
 
 ### Bugs
 
-Game did not look good on my phone after i have checked deployed link for the game, i have added @media screen and (max-width: 380px) and it looked great. 
+ Found bugs
+
+ ![screens](/images/error1.png)
+ 
+ Fixed bugs
+
+ ![screens](/images/fixed_error1.png)
+
+ - When i wrote project function total_by_column didnt work becouse i couldnt use veriable stored in the other function, but i have inserted one function to another integer_num = convert_str(data) so i could use its variables stored in there. After this function worked correctly.
 
 
-### Validator Testing
-- HTML 
-    - no errors were returned when passing through the oficial W3C validator.
-- CSS 
-    - no errors were found when passing through the official (Jigsaw) validator.
-- JS hint
-    - 14 worning saying (use 'esversion: 6'), but not mistakes.
 
+### Remaining Bugs
 
-### Unfixed bugs
+- No bugs remaining
 
-14 worning saying (use 'esversion: 6')  on JS hint
+### Validator testing
+
+- No bugs 
 
 
 ## Deployment
-The site was deployed to GitHub pages. The steps to deploy are as followes.
+This project was deployed using Code Institute's mock terminal for heroku
 
-- In the GitHub repository navigate to the settings tab
-- From the source section drop-down menu, select the Master Branch
-- Once the master branch has been selected, the page provided the link to the complit website.
+Steps for deployment:
+- Fork or clone this repository
+- Create a new heroku app
+- Set the buildbacks to Python and NodeJS in that order
+- Set the buildbacks to PORT and 8000
+- Link the Heroku app to the repository
+- Click on --> Deploy
 
 
 ## Credits
 
-### Content
+- Code institute for the deployment terminal
+- My mother for inspiration and income data
+- Walk through project3 "Love Sandwiches" for idea
+- Google Sheets
 
 
-### Media
 
-- Icon for restart button - https://fontawesome.com/
-- Icons for choices - https://www.pinterest.com/
-- Sound - https://www.zapsplat.com/
-- Favicon - https://favicon.io/
+
+
+
+
+
+
 
 
 
