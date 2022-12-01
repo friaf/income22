@@ -4,42 +4,46 @@
 
 
 ### Description
-This program is inspired by mom, as she loves counting daily, monthly and yearly incomes. 
+This program is inspired by my mather, as she loves counting daily, monthly and yearly incomes. 
 She has a lot of differenet incomes that come during the month on random days so income calculator is done for her or people like her to ease life.
 Program is updating data in work sheets, calculating monthly income per type and monthly total.
 
 
-![screens]()
+![screens](/images/responsive.png)
 
 ## Features
  
 ### Existing features
 
--	Header
+-	Welcome message
      - Header shows to user from the first sign that this is a game Rock, Paper, Scissors.
 
-![screens](/assets/)
+![screens](/images/welcome_msg.png)
 
 -	Message section
      - Has a welcoming message explaining what user/player should do to start the game. During the game message in the field changes depending on game results. Messages are: It’s a win! (if player wins), It’s a draw! (if player and computer chose the same element) or Computer wins!  (if user losses). Every message is supported with sound that represents win, lose or draw.
 
-![screens](/assets/images/message.png)
+![screens](/images/request_for_data.png)
 
 -	The game result
      - It’s a score area with 0 for computer and for player. When player wins score changes to +1 if computer wins the same, if it’s a draw no one gets a point, and the score stays the same.
 
-![screens](/assets/images/score.png)
+![screens](/images/input_of_data_and_validation.png)
 
 -	The game options
      - User and computer have 3 options to choose from, it is button with a hand that shows rock, paper or scissors.  When user chose button to play, computer starts thinking his option for couple of seconds, during these seconds computer’s buttons blink one after another. When the choice is done for both parties, buttons are highlighted with yellow color.
 
-![screens](/assets/images/choice.png)
+![screens](/images/updating_sheet.png)
 
 -	Rules button and popup.
      - When user presses on the button game page is becoming black and a popup windows pops in the middle of the screen with the rules of the game. After closing this window, user returns to game.
 
-![screens](/assets/images/rules-toggle.png)
-![screens](/assets/images/rules-popup.png)
+![screens](/images/updating_and_calculating_types.png)
+
+-	Rules button and popup.
+     - When user presses on the button game page is becoming black and a popup windows pops in the middle of the screen with the rules of the game. After closing this window, user returns to game.
+
+![screens](/images/updating_and_calculating_monthly_income.png)
 
 ### Features to implement
 - In the future game should have more of casino and gambling features like a money bag        with amount on it for computer and user where coins fall after each win and add a score scheme where if its a win 2 times in a row, double amount is added to money bag.
@@ -85,12 +89,7 @@ The site was deployed to GitHub pages. The steps to deploy are as followes.
 ## Credits
 
 ### Content
-- Toggle modal for rules button - https://www.youtube.com/watch?v=KX0NR5HtQ1Q
-- Keyboard navigation - https://christianheilmann.com/2016/08/15/better-keyboard-navigation-with-progressive-enhancement/
-- Blink effect for computer;s choice - https://www.w3docs.com/snippets/css/how-to-create-a-blinking-effect-with-css3-animations.html
-- Sound effects - https://www.w3schools.com/graphics/game_sound.asp
-- Idea on switch statement for game - https://alexabotello.medium.com/javascript-rock-paper-scissors-game-5c7dbb10038a
-- Compuer thinking on his move (timer) - https://www.freecodecamp.org/news/javascript-settimeout-how-to-set-a-timer-in-javascript-or-sleep-for-n-seconds/#:~:text=The%20JavaScript%20setTimeout()%20method,to%20pass%20one%20thousand%20milliseconds%20.
+
 
 ### Media
 
@@ -119,34 +118,3 @@ The site was deployed to GitHub pages. The steps to deploy are as followes.
 
 
 
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-Welcome friaf,
-
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
-
-## Reminders
-
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-Happy coding!
