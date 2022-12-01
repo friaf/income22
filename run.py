@@ -109,7 +109,6 @@ def convert_str(data):
     Remove string header to change all string income data to
     integers in order to sum up collumns of different incomes.
     """
-    check_values = ['income 1', 'income 2', 'income 3']
     if month_now == "November o1":
         all_values = income_october_22.get_all_values()
     elif month_now == "December 01":
@@ -134,7 +133,7 @@ def convert_str(data):
         all_values = income_august_23.get_all_values()
     elif month_now == "October 01":
         all_values = income_september_23.get_all_values()
-
+    check_values = ['income 1', 'income 2', 'income 3']
     num = list(filter(lambda row: not any(
         el in row for el in check_values), all_values))
     integer_num = num 
@@ -260,5 +259,3 @@ print("Here you can keep track on your daily income")
 print("Count monthly total and for each income type")
 print("Update worksheets with new data. \n")
 main()
-
-
