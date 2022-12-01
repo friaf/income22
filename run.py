@@ -43,7 +43,7 @@ def get_data():
         print("Data should be 3 numbers, separated by commas.")
         print("Example: 80, 90, 100\n")
         date_now = datetime.now().strftime('%B %d, %Y')
-        data_str = input(f"Enter your income for {date_now} here: ")
+        data_str = input(f"Enter your income for {date_now} here:\n ")
         new_data = data_str.split(",")
         if validate_data(new_data):
             print("Data is valid!\n")
@@ -207,7 +207,7 @@ def main():
     monthly_total()
     update_total_permonth()
   
-  
+
 print("Welcome to income calculator program!\n")
 print("Here you can keep track on your daily income")
 print("Count monthly total and for each income type")
