@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, date
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -28,7 +28,8 @@ income_may_23 = SHEET.worksheet("income_may_23")
 income_june_23 = SHEET.worksheet("income_june_23")
 income_july_23 = SHEET.worksheet("income_july_23")
 total_permonth = SHEET.worksheet("total_permonth")
-last_month = (datetime.now() - timedelta(days=32)).strftime("%B")
+month_now = datetime.now().strftime('%B %d')
+
 
 def get_data():
     """
@@ -36,7 +37,6 @@ def get_data():
     Run a while loop to collect a valid string of data from the user
     via the terminal, which must be a string of 3 numbers separated by
     commas. The loop will repeatedly request data, until it is valid.
-
     """
     while True:
         print("Please enter your last income")
@@ -109,14 +109,38 @@ def convert_str(data):
     Remove string header to change all string income data to
     integers in order to sum up collumns of different incomes.
     """
-    all_values = income_october_22.get_all_values()
     check_values = ['income 1', 'income 2', 'income 3']
+    if month_now == "November o1":
+        all_values = income_october_22.get_all_values()
+    elif month_now == "December 01":
+        all_values = income_november_22.get_all_values()
+    elif month_now == "January 01":
+        all_values = income_december_22.get_all_values()
+    elif month_now == "Fabruary 01":
+        all_values = income_january_23.get_all_values()
+    elif month_now == "March 01":
+        all_values = income_fabruary_23.get_all_values()
+    elif month_now == "April 01":
+        all_values = income_march_23.get_all_values()
+    elif month_now == "May 01":
+        all_values = income_april_23.get_all_values()
+    elif month_now == "June 01":
+        all_values = income_may_23.get_all_values()
+    elif month_now == "July 01":
+        all_values = income_june_23.get_all_values()
+    elif month_now == "August 01":
+        all_values = income_july_23.get_all_values()
+    elif month_now == "September 01":
+        all_values = income_august_23.get_all_values()
+    elif month_now == "October 01":
+        all_values = income_september_23.get_all_values()
+
     num = list(filter(lambda row: not any(
         el in row for el in check_values), all_values))
     integer_num = num 
     integer_num = [list(map(int, i)) for i in integer_num]
     return integer_num
-
+    
 
 def total_by_column(data):
     """
@@ -125,34 +149,32 @@ def total_by_column(data):
     """
     print("Calculating monthly total for each income type...\n")
     integer_num = convert_str(data)
-    month_now = datetime.now().strftime('%B %d')
     total = [sum(x) for x in zip(*integer_num)]
-    if month_now == "November 1":
+    if month_now == "November 01":
         income_october_22.append_row(total)
-    elif month_now == "December 1":
+    elif month_now == "December 01":
         income_november_22.append_row(total)
-    elif month_now == "January 1":
+    elif month_now == "January 01":
         income_december_22.append_row(total)
-    elif month_now == "Fabruary 1":
+    elif month_now == "Fabruary 01":
         income_january_23.append_row(total)
-    elif month_now == "March 1":
+    elif month_now == "March 01":
         income_fabruary_23.append_row(total)
-    elif month_now == "April 1":
+    elif month_now == "April 01":
         income_march_23.append_row(total)
-    elif month_now == "May 1":
+    elif month_now == "May 01":
         income_april_23.append_row(total)
-    elif month_now == "June 1":
+    elif month_now == "June 01":
         income_may_23.append_row(total)
-    elif month_now == "July 1":
+    elif month_now == "July 01":
         income_june_23.append_row(total)
-    elif month_now == "August 1":
+    elif month_now == "August 01":
         income_july_23.append_row(total)
-    elif month_now == "September 1":
+    elif month_now == "September 01":
         income_august_23.append_row(total)
-    elif month_now == "October 1":
+    elif month_now == "October 01":
         income_september_23.append_row(total)
-    print(f"Each income type for {last_month} is calculated")
-    print("and updated successfully\n")
+    print("Each income type for is calculated and updated successfully\n")
     return total
 
 
@@ -162,7 +184,31 @@ def monthly_total():
     for all income types. Change it from string to
     int to calculate total monthly income.
     """
-    t_income = income_october_22.get_all_values()
+    if month_now == "November 01":
+        t_income = income_october_22.get_all_values()
+    elif month_now == "December 01":
+        t_income = income_november_22.get_all_values()
+    elif month_now == "January 01":
+        t_income = income_december_22.get_all_values()
+    elif month_now == "Fabruary 01":
+        t_income = income_january_23.get_all_values()
+    elif month_now == "March 01":
+        t_income = income_fabruary_23.get_all_values()
+    elif month_now == "April 01":
+        t_income = income_march_23.get_all_values()
+    elif month_now == "May 01":
+        t_income = income_april_23.get_all_values()
+    elif month_now == "June 01":
+        t_income = income_may_23.get_all_values()
+    elif month_now == "July 01":
+        t_income = income_june_23.get_all_values()
+    elif month_now == "August 01":
+        t_income = income_july_23.get_all_values()
+    elif month_now == "September 01":
+        t_income = income_august_23.get_all_values()
+    elif month_now == "October 01":
+        t_income = income_september_23.get_all_values()
+   
     m_income = t_income[-1]
     for i in range(0, len(m_income)):
         m_income[i] = int(m_income[i])
@@ -179,7 +225,10 @@ def update_total_permonth():
     """
     print("Calculating monthly income...\n")
     m_total = monthly_total()
-    #last_month = (datetime.now() - timedelta(days=32)).strftime("%B")
+    dt = date(2022, 12, 1)
+    month, year = (dt.month-1, dt.year) if dt.month != 1 else (12, dt.year-1)
+    pre_month = dt.replace(day=1, month=month, year=year)
+    last_month = pre_month.strftime("%B")
     month_now = datetime.now().strftime('%m')
     month_now = int(month_now)
     day_now = datetime.now().strftime("%d")
@@ -190,9 +239,7 @@ def update_total_permonth():
         list.append(last_month)
         list.append(m_total)
         total_permonth.append_row(list)
-        print(f"Monthly income for {last_month} calculated")
-        print("and updated successfuly!\n")
-        print("Good Bye!")
+        print("Monthly income is calculated and updated successfuly!\n")
 
 
 def main():
