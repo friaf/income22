@@ -28,7 +28,7 @@ income_may_23 = SHEET.worksheet("income_may_23")
 income_june_23 = SHEET.worksheet("income_june_23")
 income_july_23 = SHEET.worksheet("income_july_23")
 total_permonth = SHEET.worksheet("total_permonth")
-
+last_month = (datetime.now() - timedelta(days=32)).strftime("%B")
 
 def get_data():
     """
@@ -151,7 +151,7 @@ def total_by_column(data):
         income_august_23.append_row(total)
     elif month_now == "October 1":
         income_september_23.append_row(total)
-    print(f"Each income type for {month_now} is calculated")
+    print(f"Each income type for {last_month#} is calculated")
     print("and updated successfully\n")
     return total
 
@@ -179,7 +179,7 @@ def update_total_permonth():
     """
     print("Calculating monthly income...\n")
     m_total = monthly_total()
-    last_month = (datetime.now() - timedelta(days=32)).strftime("%B")
+    #last_month = (datetime.now() - timedelta(days=32)).strftime("%B")
     month_now = datetime.now().strftime('%m')
     month_now = int(month_now)
     day_now = datetime.now().strftime("%d")
@@ -213,3 +213,5 @@ print("Here you can keep track on your daily income")
 print("Count monthly total and for each income type")
 print("Update worksheets with new data. \n")
 main()
+
+
